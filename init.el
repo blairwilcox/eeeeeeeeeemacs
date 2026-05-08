@@ -75,6 +75,11 @@
 	:ensure t
 	:defer)
 
+(use-package git-gutter
+	:ensure t
+	:defer
+	:hook (prog-mode . git-gutter-mode))
+
 (setq emms-player-list '(emms-player-mpv)
 			emms-info-functions '(emms-info-native))
 
@@ -82,19 +87,28 @@
   :ensure t
   :mode
   (("\\.phtml\\'" . web-mode)
-   ("\\.php\\'" . web-mode)
-   ("\\.tpl\\'" . web-mode)
-   ("\\.[agj]sp\\'" . web-mode)
-   ("\\.as[cp]x\\'" . web-mode)
-   ("\\.erb\\'" . web-mode)
-   ("\\.mustache\\'" . web-mode)
-   ("\\.twig\\'" . web-mode)
-   ("\\.djhtml\\'" . web-mode)))
+		("\\.php\\'" . web-mode)
+		("\\.tpl\\'" . web-mode)
+		("\\.[agj]sp\\'" . web-mode)
+		("\\.as[cp]x\\'" . web-mode)
+		("\\.erb\\'" . web-mode)
+		("\\.mustache\\'" . web-mode)
+		("\\.twig\\'" . web-mode)
+		("\\.djhtml\\'" . web-mode)))
+
+(use-package vterm
+  :ensure t
+	:defer)
 
 (use-package olivetti
   :ensure t
   :defer)
 
+(use-package treemacs
+	:ensure t
+	:defer
+	:custom
+	(treemacs-project-follow-mode t))
 																				;(use-package apheleia
 																				;  :ensure t
 																				;  :defer)
@@ -224,7 +238,7 @@
 		;; Application commands
 		'("a w" . eww)
 		'("a r" . elfeed)
-		'("a t" . term)
+		'("a t" . vterm)
 		;; Buffer commands
 		'("b i" . ibuffer)
 		'("b n" . next-buffer)
