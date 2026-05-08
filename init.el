@@ -16,6 +16,10 @@
 	:init
 	(solaire-global-mode t))
 
+(use-package demap
+	:ensure t
+	:defer)
+
 (use-package elfeed
   :ensure t
   :defer)
@@ -112,7 +116,8 @@
 	(setq treemacs-follow-after-init t)
 	(setq treemacs-file-follow-delay 0.01)
 	;; I don't know if I'm supposed to set this
-	(setq treemacs--project-follow-delay 0))
+	(setq treemacs--project-follow-delay 0)
+	(treemacs-project-follow-mode t))
 																				;(use-package apheleia
 																				;  :ensure t
 																				;  :defer)
@@ -251,9 +256,10 @@
 		'("b r" . olivetti-mode)
 		'("b d" . kill-current-buffer)
 		;; Code commands
-		'("c c" . eglot)
-		'("c r" . eglot-rename)
-		'("c /" . eglot-find-declaration)
+		'("C m" . demap-toggle)
+		'("C c" . eglot)
+		'("C r" . eglot-rename)
+		'("C /" . eglot-find-declaration)
 		;; Emacs Config commands
 		'("e ." . open-config-directory)
 		'("e i" . open-init-file)
