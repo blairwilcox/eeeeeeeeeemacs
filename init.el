@@ -11,6 +11,11 @@
   :ensure t
   :defer)
 
+(use-package solaire-mode
+	:ensure t
+	:init
+	(solaire-global-mode t))
+
 (use-package elfeed
   :ensure t
   :defer)
@@ -33,6 +38,9 @@
   ;;        (eshell-mode . corfu-mode))
 
   :init
+	;; Enable auto completion, configure delay, trigger and quitting
+	(setq corfu-auto t
+      corfu-auto-delay 0.2) 
 
   ;; Recommended: Enable Corfu globally.  Recommended since many modes provide
   ;; Capfs and Dabbrev can be used globally (M-/).  See also the customization
@@ -52,19 +60,12 @@
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown")
   :bind (:map markdown-mode-map
-					("C-c C-e" . markdown-do)))
-
-;; Enable auto completion, configure delay, trigger and quitting
-(setq corfu-auto t
-      corfu-auto-delay 0.2
-      corfu-auto-trigger "." ;; Custom trigger characters
-      corfu-quit-no-match 'separator) ;; or t
+							("C-c C-e" . markdown-do)))
 
 (use-package pdf-tools
   :ensure t
   :pin nongnu
   :defer)
-
 																				;(use-package shrface
 																				;	:ensure t
 																				;	:pin melpa
@@ -87,6 +88,7 @@
   :mode
   (("\\.phtml\\'" . web-mode)
 		("\\.php\\'" . web-mode)
+		("\\.[jt]sx?\\'" . web-mode)
 		("\\.tpl\\'" . web-mode)
 		("\\.[agj]sp\\'" . web-mode)
 		("\\.as[cp]x\\'" . web-mode)
@@ -128,6 +130,7 @@
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (setq-default tab-width 2)
 (setq-default org-indent-mode t)
+(scroll-bar-mode -1)
 
 (setq backup-directory-alist '(("." . "~/.config/emacs/backups/")))
 
