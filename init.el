@@ -41,8 +41,7 @@
 
   ;; Enable optional extension modes:
   ;; (corfu-history-mode)
-  (corfu-popupinfo-mode)
-  )
+  (corfu-popupinfo-mode))
 
 (use-package eldoc-box
 	:ensure t
@@ -107,8 +106,11 @@
 (use-package treemacs
 	:ensure t
 	:defer
-	:custom
-	(treemacs-project-follow-mode t))
+	:init
+	(setq treemacs-follow-after-init t)
+	(setq treemacs-file-follow-delay 0.01)
+	;; I don't know if I'm supposed to set this
+	(setq treemacs--project-follow-delay 0))
 																				;(use-package apheleia
 																				;  :ensure t
 																				;  :defer)
@@ -268,6 +270,7 @@
 		'("p p" . project-switch-project)
 		'("p ." . project-find-file)
 		'("p b" . project-list-buffers-ibuffer)
+		'("p s" . treemacs)
 		'("p t" . project-eshell))
   (meow-normal-define-key
 		'("/" . meow-visit)
